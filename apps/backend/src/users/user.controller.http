@@ -1,0 +1,50 @@
+@TOKEN_ADMIN = {{$dotenv %SECRET_TOKEN}}
+
+# Create a new user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "securePassword123"
+}
+
+###
+
+# Create a new admin
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "John Admin3 Doe",
+    "email": "john.admin3.doe@example.com",
+    "password": "securePassword123",
+    "roles": "ADMIN"
+}
+
+###
+
+# Fetch all users to verify the creation
+GET http://localhost:3000/users/allUser
+Authorization: Bearer {{TOKEN_ADMIN}}
+
+###
+
+# Fetch user by id
+GET http://localhost:3000/users/1
+Authorization: Bearer {{TOKEN_ADMIN}}
+
+
+###
+
+# UPDATE USER
+
+PATCH http://localhost:3000/users/1
+Authorization: Bearer {{TOKEN_ADMIN}}
+Content-Type: application/json
+
+{
+    "email": "doe@example.com",
+    "roles": [ "USER" ]
+}

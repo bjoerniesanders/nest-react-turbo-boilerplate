@@ -1,0 +1,144 @@
+const { createTheme } = require('@mui/material/styles');
+
+
+const muiTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#0489F5', // Blue
+      light: '#B7E7FF',
+      dark: '#0486E7',
+    },
+    secondary: {
+      main: '#1DE9B6', // Green
+      light: '#C3F9EB',
+      dark: '#11D3A9',
+    },
+    error: {
+      main: '#FF494F', // Red
+      light: '#FFADAF',
+      dark: '#ED0717',
+    },
+    warning: {
+      main: '#FFAA00', // Yellow
+      light: '#FFDF9E',
+      dark: '#EB9100',
+    },
+    success: {
+      main: '#49C930', // Success (Green)
+      light: '#C7EDBF',
+      dark: '#3FA929',
+    },
+    background: {
+      default: '#FBFBFC', // Light gray
+      paper: '#FFFFFF', // White
+    },
+    text: {
+      primary: '#25292C', // Dark gray
+      secondary: '#778292', // Medium gray
+    },
+  },
+});
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      xxl: '1536px',
+    },
+    extend: {
+      colors: {
+        // Base colors
+        'base-black': 'rgb(0 0 0)',
+        'base-dark': 'rgb(242 246 247)',
+        'base-light': 'rgb(251, 251, 252)',
+        'base-white': 'rgb(255 255 255)',
+        
+        // Content colors
+        'content-50': 'rgb(243 245 247)',
+        'content-100': 'rgb(231 236 239)',
+        'content-200': 'rgb(200 205 208)',
+        'content-300': 'rgb(170 175 182)',
+        'content-400': 'rgb(128 136 147)',
+        'content-500': 'rgb(100 107 118)',
+        'content-600': 'rgb(77 82 91)',
+        'content-700': 'rgb(59 62 69)',
+        'content-800': 'rgb(38 39 44)',
+        'content-900': 'rgb(23 25 28)',
+
+        // Brand colors
+        'brand-primary-50': 'rgb(235 249 255)',
+        'brand-primary-100': 'rgb(183 231 255)',
+        'brand-primary-300': 'rgb(47 191 255)',
+        'brand-primary-500': 'rgb(4 169 245)',
+        'brand-primary-700': 'rgb(4 154 241)',
+        'brand-primary-900': 'rgb(4 136 231)',
+
+        'brand-secondary-50': 'rgb(229 255 249)',
+        'brand-secondary-100': 'rgb(195 249 235)',
+        'brand-secondary-300': 'rgb(102 240 205)',
+        'brand-secondary-500': 'rgb(29 233 182)',
+        'brand-secondary-700': 'rgb(21 218 169)',
+        'brand-secondary-900': 'rgb(17 197 161)',
+
+        'brand-tertiary-50': 'rgb(243 240 250)',
+        'brand-tertiary-100': 'rgb(226 217 242)',
+        'brand-tertiary-300': 'rgb(185 165 222)',
+        'brand-tertiary-500': 'rgb(163 137 212)',
+        'brand-tertiary-700': 'rgb(150 119 207)',
+        'brand-tertiary-900': 'rgb(138 103 203)',
+
+        // Accent colors
+        'accent-success-50': 'rgb(230 248 226)',
+        'accent-success-100': 'rgb(199 237 191)',
+        'accent-success-300': 'rgb(150 221 136)',
+        'accent-success-500': 'rgb(73 201 48)',
+        'accent-success-700': 'rgb(63 173 41)',
+        'accent-success-900': 'rgb(56 153 36)',
+
+        'accent-info-50': 'rgb(228 251 250)',
+        'accent-info-100': 'rgb(166 242 239)',
+        'accent-info-300': 'rgb(86 230 225)',
+        'accent-info-500': 'rgb(32 217 210)',
+        'accent-info-700': 'rgb(29 200 194)',
+        'accent-info-900': 'rgb(25 174 169)',
+
+        'accent-warning-50': 'rgb(255 245 224)',
+        'accent-warning-100': 'rgb(255 223 158)',
+        'accent-warning-300': 'rgb(255 195 77)',
+        'accent-warning-500': 'rgb(255 170 0)',
+        'accent-warning-700': 'rgb(245 159 0)',
+        'accent-warning-900': 'rgb(235 145 0)',
+
+        'accent-danger-50': 'rgb(255 240 240)',
+        'accent-danger-100': 'rgb(255 173 176)',
+        'accent-danger-300': 'rgb(255 117 121)',
+        'accent-danger-500': 'rgb(255 73 79)',
+        'accent-danger-700': 'rgb(255 41 48)',
+        'accent-danger-900': 'rgb(237 7 23)',
+      },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
+      keyframes: {
+        'options-menu-in': {
+          '0%': { opacity: 0, transform: 'rotate3d(0, 0, 1, 15)' },
+        },
+      },
+      height: {
+        'fill-available': '-webkit-fill-available',
+      },
+      boxShadow: {
+        small: '0 8px 32px 0 #17191C0D, 0 4px 16px 0 #17191C1A',
+      },
+    },
+  },
+  plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
+};

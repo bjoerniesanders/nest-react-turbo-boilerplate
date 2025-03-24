@@ -1,0 +1,60 @@
+{
+  "tasks": {
+    "build:docker": {
+      "cache": false,
+      "outputs": [],
+      "dependsOn": ["^docker:build"]
+    },
+    "docker:up": {
+      "cache": false,
+      "persistent": true,
+      "outputs": []
+    },
+    "docker:down": {
+      "cache": false,
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["frontend:build", "backend:build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["build"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "backend:build": {
+      "outputs": ["apps/backend/dist/**"],
+      "inputs": ["apps/backend/**", "packages/**"]
+    },
+    "backend:dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["backend:build"]
+    },
+    "backend:test": {
+      "dependsOn": ["backend:build"],
+      "outputs": []
+    },
+    "frontend:build": {
+      "outputs": ["apps/frontend/dist/**"],
+      "inputs": ["apps/frontend/**", "packages/**"]
+    },
+    "frontend:dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["frontend:build"]
+    },
+    "frontend:test": {
+      "dependsOn": ["frontend:build"],
+      "outputs": []
+    },
+    "start": {
+      "dependsOn": ["backend:dev", "frontend:dev"]
+    }
+  }
+}

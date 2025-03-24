@@ -1,0 +1,43 @@
+# Node.js build files
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build-Artefakte
+dist
+build
+
+# Umgebungsdateien
+.env
+.env.local
+
+# Versionskontrolle
+.git
+.gitignore
+
+# IDE-Konfigurationsdateien
+.vscode
+.idea
+
+# Andere irrelevante Dateien
+*.log
+*.tmp
+*.temp
+.temp/
+
+# Cache
+.cache/
+.eslintcache
+.stylelintcache
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.yarn-integrity

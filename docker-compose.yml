@@ -1,0 +1,51 @@
+services:
+  database:
+    image: postgres:17
+    container_name: db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nest-react-turbo-template
+    ports:
+      - "5433:5433"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d nest-react-turbo-template"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    command: bash -c "yarn mikro-orm schema:create && yarn start:backend"
+    volumes:
+      - ./apps/backend/dist:/app/dist:cached
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5433
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: nest-react-turbo-template
+    depends_on:
+       database:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
