@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres_test:
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     environment:
       POSTGRES_DB: nest_react_turbo_template_test
       POSTGRES_USER: admin
