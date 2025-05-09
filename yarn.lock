@@ -1685,40 +1685,40 @@ __metadata:
   linkType: hard
 
 "@mikro-orm/cli@npm:^6.4.11":
-  version: 6.4.14
-  resolution: "@mikro-orm/cli@npm:6.4.14"
+  version: 6.4.15
+  resolution: "@mikro-orm/cli@npm:6.4.15"
   dependencies:
     "@jercle/yargonaut": "npm:1.1.5"
-    "@mikro-orm/core": "npm:6.4.14"
-    "@mikro-orm/knex": "npm:6.4.14"
+    "@mikro-orm/core": "npm:6.4.15"
+    "@mikro-orm/knex": "npm:6.4.15"
     fs-extra: "npm:11.3.0"
     tsconfig-paths: "npm:4.2.0"
     yargs: "npm:17.7.2"
   bin:
     mikro-orm: ./cli
     mikro-orm-esm: ./esm
-  checksum: 10c0/84000d6dd14965925577d7587e1866022d1731336c776858a58f5c1a2ec52d8e190f37337629e3c209a9dade6dc547aa0da3b2012f13fabb7cfd68b5fe55f391
+  checksum: 10c0/55abff58e36d9a53bb3c553bb5ce135fe7a2e222ca0139cdc9f64a03e8a268e51474c9af4e5c208af42518de5cc94f197359fea8f838020ecac2b2e6a7e81351
   languageName: node
   linkType: hard
 
-"@mikro-orm/core@npm:6.4.14, @mikro-orm/core@npm:^6.4.11":
-  version: 6.4.14
-  resolution: "@mikro-orm/core@npm:6.4.14"
+"@mikro-orm/core@npm:6.4.15, @mikro-orm/core@npm:^6.4.11":
+  version: 6.4.15
+  resolution: "@mikro-orm/core@npm:6.4.15"
   dependencies:
     dataloader: "npm:2.2.3"
     dotenv: "npm:16.5.0"
     esprima: "npm:4.0.1"
     fs-extra: "npm:11.3.0"
     globby: "npm:11.1.0"
-    mikro-orm: "npm:6.4.14"
+    mikro-orm: "npm:6.4.15"
     reflect-metadata: "npm:0.2.2"
-  checksum: 10c0/7d09a18807082e15681fae05ee83835d95f8da5e0b56f6b40cb1bea305dba6325ae080eb40626cb1ffcc1158e1cc10e33acde0e6d8fd9e38131e7f5397c0e9ba
+  checksum: 10c0/bc650b6767233734ace67757a02ff3bfc3824253eef48a2591e9049a8dbde4640daa0965e3caea3731a4c32fb0125f44fe15251b5b20399ddf397de1a25c90fa
   languageName: node
   linkType: hard
 
-"@mikro-orm/knex@npm:6.4.14":
-  version: 6.4.14
-  resolution: "@mikro-orm/knex@npm:6.4.14"
+"@mikro-orm/knex@npm:6.4.15":
+  version: 6.4.15
+  resolution: "@mikro-orm/knex@npm:6.4.15"
   dependencies:
     fs-extra: "npm:11.3.0"
     knex: "npm:3.1.0"
@@ -1735,20 +1735,20 @@ __metadata:
       optional: true
     mariadb:
       optional: true
-  checksum: 10c0/a4f1f0b73918e2dbbbfb61af57192148e55cfebea4cd5741b70884624a24ef4a893f34335eda4fd7a2caf9018196e21fb0805c8403b6f4dbe840cc3a894c4806
+  checksum: 10c0/34cba3f6f69e80abe315abeca158abc8b5f3af637c1c262372b14a53386dae601f046392c94198011f577d074202823370789976ec51792750b4761706d2c18b
   languageName: node
   linkType: hard
 
 "@mikro-orm/migrations@npm:^6.4.11":
-  version: 6.4.14
-  resolution: "@mikro-orm/migrations@npm:6.4.14"
+  version: 6.4.15
+  resolution: "@mikro-orm/migrations@npm:6.4.15"
   dependencies:
-    "@mikro-orm/knex": "npm:6.4.14"
+    "@mikro-orm/knex": "npm:6.4.15"
     fs-extra: "npm:11.3.0"
     umzug: "npm:3.8.2"
   peerDependencies:
     "@mikro-orm/core": ^6.0.0
-  checksum: 10c0/313ae8ba5eeceb98b14f5b5d8669c2737185a2bb7270cff306c586f8cffb4f35af1fea688fc0d8ea49a7fefa6a00a86ae6484e2a7b64a1d109bac8da75fb7631
+  checksum: 10c0/aeb5960103813b285a3c37c3f3b929dfed0288f6a4a39509a8f27d192cc8af833ec16c657b90f7f3d8c314631f4cbc5398bad85e06ffb0633581543747b233ad
   languageName: node
   linkType: hard
 
@@ -1764,17 +1764,17 @@ __metadata:
   linkType: hard
 
 "@mikro-orm/postgresql@npm:^6.4.11":
-  version: 6.4.14
-  resolution: "@mikro-orm/postgresql@npm:6.4.14"
+  version: 6.4.15
+  resolution: "@mikro-orm/postgresql@npm:6.4.15"
   dependencies:
-    "@mikro-orm/knex": "npm:6.4.14"
-    pg: "npm:8.14.1"
+    "@mikro-orm/knex": "npm:6.4.15"
+    pg: "npm:8.15.6"
     postgres-array: "npm:3.0.4"
     postgres-date: "npm:2.1.0"
     postgres-interval: "npm:4.0.2"
   peerDependencies:
     "@mikro-orm/core": ^6.0.0
-  checksum: 10c0/7cdc73d848aa381ee5feacf8435fcbbc0d507b821318d070bf4385243494368834c55e35d661996f3324e3a283c005006f4b7afa65b06184476e466760fad5d2
+  checksum: 10c0/0bf5118649bca1f3691a4e25408f2103bda781f4314b543a97ce9be0c510b04175454c28b7810a2ed242324ce36b30931a20efb003fdb64183d5c29c6efd845a
   languageName: node
   linkType: hard
 
@@ -2678,7 +2678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/cli@npm:^0.7.5":
+"@swc/cli@npm:^0.7.0":
   version: 0.7.5
   resolution: "@swc/cli@npm:0.7.5"
   dependencies:
@@ -4753,7 +4753,7 @@ __metadata:
     "@nestjs/platform-express": "npm:^11.0.12"
     "@nestjs/schematics": "npm:^11.0.2"
     "@nestjs/testing": "npm:^11.0.12"
-    "@swc/cli": "npm:^0.7.5"
+    "@swc/cli": "npm:^0.7.0"
     "@swc/core": "npm:^1.11.11"
     "@swc/jest": "npm:^0.2.37"
     "@swc/register": "npm:^0.1.10"
@@ -4795,7 +4795,7 @@ __metadata:
     tsconfig-paths: "npm:^4.2.0"
     typescript: "npm:^5.8.2"
     unplugin-swc: "npm:^1.5.1"
-    vite: "npm:^6.2.2"
+    vite: "npm:^6.3.5"
     webpack: "npm:^5.98.0"
   languageName: unknown
   linkType: soft
@@ -6668,11 +6668,11 @@ __metadata:
   linkType: hard
 
 "eventsource@npm:^3.0.2":
-  version: 3.0.6
-  resolution: "eventsource@npm:3.0.6"
+  version: 3.0.7
+  resolution: "eventsource@npm:3.0.7"
   dependencies:
     eventsource-parser: "npm:^3.0.1"
-  checksum: 10c0/074d865ea1c7e29e3243f85a13306e89fca2d775b982dca03fa6bfa75c56827fa89cf1ab9e730db24bd6b104cbdcae074f2b37ba498874e9dd9710fbff4979bb
+  checksum: 10c0/c48a73c38f300e33e9f11375d4ee969f25cbb0519608a12378a38068055ae8b55b6e0e8a49c3f91c784068434efe1d9f01eb49b6315b04b0da9157879ce2f67d
   languageName: node
   linkType: hard
 
@@ -7180,11 +7180,11 @@ __metadata:
     react: "npm:^19.0.0"
     react-cookie: "npm:^8.0.1"
     react-dom: "npm:^19.0.0"
-    react-router-dom: "npm:^7.6.0"
+    react-router-dom: "npm:^7.4.0"
     tailwindcss: "npm:^4.0.15"
     typescript: "npm:~5.8.2"
     typescript-eslint: "npm:^8.27.0"
-    vite: "npm:^6.2.2"
+    vite: "npm:^6.3.5"
     vitest: "npm:^3.0.9"
   languageName: unknown
   linkType: soft
@@ -7644,9 +7644,9 @@ __metadata:
   linkType: hard
 
 "http-cache-semantics@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "http-cache-semantics@npm:4.1.1"
-  checksum: 10c0/ce1319b8a382eb3cbb4a37c19f6bfe14e5bb5be3d09079e885e8c513ab2d3cd9214902f8a31c9dc4e37022633ceabfc2d697405deeaf1b8f3552bb4ed996fdfc
+  version: 4.2.0
+  resolution: "http-cache-semantics@npm:4.2.0"
+  checksum: 10c0/45b66a945cf13ec2d1f29432277201313babf4a01d9e52f44b31ca923434083afeca03f18417f599c9ab3d0e7b618ceb21257542338b57c54b710463b4a53e37
   languageName: node
   linkType: hard
 
@@ -9512,10 +9512,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mikro-orm@npm:6.4.14":
-  version: 6.4.14
-  resolution: "mikro-orm@npm:6.4.14"
-  checksum: 10c0/d8511f25b49dcc6dd30b8a7a874d1977b749a65a46fe6c57531893ebf7e7e99c0b30726fe4ad621e70b0331270d0247571ba5cbcad16a034aaf79a1cad63337c
+"mikro-orm@npm:6.4.15":
+  version: 6.4.15
+  resolution: "mikro-orm@npm:6.4.15"
+  checksum: 10c0/d54085331560dea1cf7e8536a6d6c8be2ab8db9c709967301a074ffaa76877ced85bd5895bbb4e6f9ea106a3cbff8f45d754bbf10a396963fdfe5625018d9739
   languageName: node
   linkType: hard
 
@@ -10415,7 +10415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-cloudflare@npm:^1.1.1, pg-cloudflare@npm:^1.2.5":
+"pg-cloudflare@npm:^1.2.5":
   version: 1.2.5
   resolution: "pg-cloudflare@npm:1.2.5"
   checksum: 10c0/48b9105ef027c7b3f57ef88ceaec3634cd82120059bd68273cce06989a1ec547e0b0fbb5d1afdd0711824f409c8b410f9bdec2f6c8034728992d3658c0b36f86
@@ -10429,7 +10429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-connection-string@npm:^2.7.0, pg-connection-string@npm:^2.8.5":
+"pg-connection-string@npm:^2.8.5":
   version: 2.8.5
   resolution: "pg-connection-string@npm:2.8.5"
   checksum: 10c0/5f65afc9dfc99ecf1583a1699c97511f3d505659c9c6a91db8cd0ffe862caa29060722712a034abd6da493356567261febf18b3a6ef223d0a219f0d50d959b97
@@ -10443,7 +10443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-pool@npm:^3.8.0, pg-pool@npm:^3.9.6":
+"pg-pool@npm:^3.9.6":
   version: 3.9.6
   resolution: "pg-pool@npm:3.9.6"
   peerDependencies:
@@ -10452,7 +10452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-protocol@npm:^1.8.0, pg-protocol@npm:^1.9.5":
+"pg-protocol@npm:^1.9.5":
   version: 1.9.5
   resolution: "pg-protocol@npm:1.9.5"
   checksum: 10c0/5cb3444cf973adadd22ee9ea26bb1674f0d980ef8f9c66d426bbe67fc9cb5f0ca4a204bf7e432b3ab2ab59ac8227f4b18ab3b2e64eaed537e037e916991c7319
@@ -10472,29 +10472,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg@npm:8.14.1":
-  version: 8.14.1
-  resolution: "pg@npm:8.14.1"
-  dependencies:
-    pg-cloudflare: "npm:^1.1.1"
-    pg-connection-string: "npm:^2.7.0"
-    pg-pool: "npm:^3.8.0"
-    pg-protocol: "npm:^1.8.0"
-    pg-types: "npm:^2.1.0"
-    pgpass: "npm:1.x"
-  peerDependencies:
-    pg-native: ">=3.0.1"
-  dependenciesMeta:
-    pg-cloudflare:
-      optional: true
-  peerDependenciesMeta:
-    pg-native:
-      optional: true
-  checksum: 10c0/221741cfcea4ab32c8b57bd60703bc36cfb5622dcac56c19e45f504ef8669f2f2e0429af8850f58079cfc89055da35b5a5e12de19e0505e3f61a4b4349388dcb
-  languageName: node
-  linkType: hard
-
-"pg@npm:^8.14.1":
+"pg@npm:8.15.6, pg@npm:^8.14.1":
   version: 8.15.6
   resolution: "pg@npm:8.15.6"
   dependencies:
@@ -10904,7 +10882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.6.0":
+"react-router-dom@npm:^7.4.0":
   version: 7.6.0
   resolution: "react-router-dom@npm:7.6.0"
   dependencies:
@@ -11197,7 +11175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.30.1":
+"rollup@npm:^4.34.9":
   version: 4.40.2
   resolution: "rollup@npm:4.40.2"
   dependencies:
@@ -13005,14 +12983,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.0.0 || ^6.0.0, vite@npm:^6.2.2":
-  version: 6.2.7
-  resolution: "vite@npm:6.2.7"
+"vite@npm:^5.0.0 || ^6.0.0, vite@npm:^6.3.5":
+  version: 6.3.5
+  resolution: "vite@npm:6.3.5"
   dependencies:
     esbuild: "npm:^0.25.0"
+    fdir: "npm:^6.4.4"
     fsevents: "npm:~2.3.3"
+    picomatch: "npm:^4.0.2"
     postcss: "npm:^8.5.3"
-    rollup: "npm:^4.30.1"
+    rollup: "npm:^4.34.9"
+    tinyglobby: "npm:^0.2.13"
   peerDependencies:
     "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
     jiti: ">=1.21.0"
@@ -13053,7 +13034,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/2da5df6bfdc386a3b24d7350c508e075a49a5b5c33eb4a327203eb175398a1da99d185c68bd2287be897032810700d95ea7ce72d1113d86f43de61f0ce4435da
+  checksum: 10c0/df70201659085133abffc6b88dcdb8a57ef35f742a01311fc56a4cfcda6a404202860729cc65a2c401a724f6e25f9ab40ce4339ed4946f550541531ced6fe41c
   languageName: node
   linkType: hard
 
