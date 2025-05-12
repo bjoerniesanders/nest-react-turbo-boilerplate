@@ -22,7 +22,7 @@ export const AuthService = {
         }
       });
       
-      console.log('Login successful, tokens should be in cookies');
+   
       return response.data;
     } catch (error) {
       console.error('Login failed:', error);
@@ -32,7 +32,6 @@ export const AuthService = {
 
   refresh: async (): Promise<void> => {
     try {
-      console.log('Attempting to refresh token...');
       await axiosInstance.post('/auth/refresh', {}, { 
         withCredentials: true,
         headers: {
@@ -40,7 +39,6 @@ export const AuthService = {
           'Content-Type': 'application/json'
         }
       });
-      console.log('Token refresh successful');
     } catch (error) {
       console.error('Token refresh failed:', error);
       throw error;

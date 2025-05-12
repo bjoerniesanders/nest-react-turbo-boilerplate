@@ -1,45 +1,153 @@
-# React + TypeScript + Vite
+# React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React frontend application built with TypeScript, Material-UI, and React Router. This frontend is part of the NestJS + React + Turborepo boilerplate.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Features
+- ⚛️ **React 19**: Latest version with TypeScript support
+- 🎨 **Material-UI**: Modern UI components and responsive design
+- 🔒 **Authentication**: JWT-based authentication with cookie storage
+- 🛣️ **Routing**: Protected routes with React Router
+- 🔄 **State Management**: Context API for authentication state
+- 📡 **API Integration**: Type-safe API calls with Axios
+- 🎯 **Type Safety**: Full TypeScript support
 
-## Expanding the ESLint configuration
+### UI Components
+- Modern login page with form validation
+- Responsive dashboard layout
+- User profile management
+- Navigation menu
+- Loading states and error handling
+- Toast notifications
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Security Features
+- Protected routes
+- Authentication context
+- Token refresh mechanism
+- Secure cookie handling
+- CORS configuration
 
-- Configure the top-level `parserOptions` property like this:
+## Project Structure
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+src/
+├── api/              # API configuration and interceptors
+├── components/       # Reusable UI components
+├── context/         # React context providers
+├── pages/           # Page components
+├── services/        # API services
+├── types/           # TypeScript type definitions
+└── utils/           # Utility functions
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Getting Started
 
-```js
+### Prerequisites
+- Node.js 24.x
+- Yarn
+- Backend server running (see main README)
 
-import react from 'eslint-plugin-react'
+### Installation
 
-export default tseslint.config({
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    react,
-  },
-  rules: {
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+1. Install dependencies:
+```bash
+yarn install
 ```
+
+2. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+3. Update the environment variables:
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+### Development
+
+Start the development server:
+```bash
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+### Building
+
+Build the application for production:
+```bash
+yarn build
+```
+
+Preview the production build:
+```bash
+yarn preview
+```
+
+### Testing
+
+Run tests:
+```bash
+yarn test
+```
+
+## Available Scripts
+
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn preview` - Preview production build
+- `yarn test` - Run tests
+- `yarn lint` - Run linter
+- `yarn build:docker` - Build Docker image
+- `yarn docker:up` - Start Docker container
+- `yarn docker:down` - Stop Docker container
+
+## Key Components
+
+### Authentication
+- `AuthContext`: Manages authentication state
+- `PrivateRoute`: Protects routes from unauthorized access
+- `LoginPage`: User authentication interface
+
+### API Integration
+- `axiosInstance`: Configured Axios instance with interceptors
+- `AuthService`: Authentication-related API calls
+- `UserService`: User-related API calls
+
+### UI Components
+- `Button`: Custom button component with loading state
+- `Dashboard`: Main application interface
+- `Navigation`: Application navigation menu
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| VITE_API_URL | Backend API URL | http://localhost:3000 |
+
+## Docker Support
+
+Build and run with Docker:
+```bash
+# Build
+yarn build:docker
+
+# Run
+yarn docker:up
+
+# Stop
+yarn docker:down
+```
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run tests
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the main [LICENSE](../LICENSE) file for details.

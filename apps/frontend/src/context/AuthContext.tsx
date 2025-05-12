@@ -33,8 +33,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
       setIsAuthenticated(true);
       navigate("/dashboard", { replace: true });
     } catch (error) {
-      setIsAuthenticated(false);
-      throw new Error(error instanceof Error ? error.message : "Login failed");
+      throw error instanceof Error ? error : new Error("Login failed");
     }
   }, [navigate]);
 
@@ -52,7 +51,6 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
     const initializeAuth = async () => {
       try {
         const refreshToken = cookies.get("refresh_token");
-        console.log("Initializing auth, refresh token present:", !!refreshToken);
         
         if (refreshToken) {
           await AuthService.refresh();
@@ -75,7 +73,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
   );
 
   if (isLoading) {
-    return null; // oder einen Loading-Spinner
+    return null; 
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

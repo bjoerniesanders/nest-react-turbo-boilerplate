@@ -4,47 +4,64 @@ import * as bcrypt from 'bcrypt';
 import { ReadUserService } from 'src/users/read/read-user.service';
 import { Response as ExpressResponse } from 'express';
 import { UserDto } from '@src/users/dto/user.dto';
+import { AuthenticatedUser, JwtPayload } from './types/authenticated-user.type';
+import { ConfigService } from '@nestjs/config';
+import { AuthConfig, authConfig } from './config/auth.config';
 
 @Injectable()
 export class AuthService {
+  private readonly config: AuthConfig;
+
   constructor(
     private readonly usersService: ReadUserService,
     private readonly jwtService: JwtService,
-  ) {}
+    private readonly configService: ConfigService,
+  ) {
+    this.config = authConfig();
+  }
 
-  async validateUser(email: string, password: string): Promise<any> {
+  async validateUser(email: string, password: string): Promise<AuthenticatedUser | null> {
     const user = await this.usersService.findByEmail(email);
     if (user && (await bcrypt.compare(password, user.password))) {
-      const { password, ...result } = user;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password: _, ...result } = user;
       return result;
     }
     return null;
   }
 
-  async login(user: UserDto, res: ExpressResponse) {
-    const payload = {
+  async login(
+    user: UserDto,
+    res: ExpressResponse,
+  ): Promise<{ user: { id: number; email: string; roles: string[] } }> {
+    const payload: JwtPayload = {
       email: user.email,
       sub: user.id,
-      roles: Array.isArray(user.roles) ? user.roles : [user.roles],
+      roles: user.roles
+        ? Array.isArray(user.roles)
+          ? user.roles.filter(Boolean)
+          : [user.roles]
+        : [],
     };
 
-    const accessToken = this.jwtService.sign(payload); 
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
-
-    res.cookie('access_token', accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      path: '/',
-      maxAge: 60 * 60 * 1000, // 1 Stunde
+    const accessToken = this.jwtService.sign(payload, {
+      secret: this.config.jwt.accessToken.secret,
+      expiresIn: this.config.jwt.accessToken.expiresIn,
     });
 
-    res.cookie('refresh_token', refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      path: '/',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 Tage
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: this.config.jwt.refreshToken.secret,
+      expiresIn: this.config.jwt.refreshToken.expiresIn,
+    });
+
+    res.cookie(this.config.cookies.accessToken.name, accessToken, {
+      ...this.config.cookies.options,
+      maxAge: this.config.cookies.accessToken.maxAge,
+    });
+
+    res.cookie(this.config.cookies.refreshToken.name, refreshToken, {
+      ...this.config.cookies.options,
+      maxAge: this.config.cookies.refreshToken.maxAge,
     });
 
     return {
@@ -58,23 +75,25 @@ export class AuthService {
 
   async refreshTokenFromValue(refreshToken: string, res: ExpressResponse): Promise<void> {
     if (!refreshToken) throw new UnauthorizedException('No refresh token provided');
-  
+
     try {
-      const payload = this.jwtService.verify(refreshToken);
-      const newAccessToken = this.jwtService.sign({
-        email: payload.email,
-        sub: payload.sub,
-        roles: payload.roles,
+      const payload = this.jwtService.verify<JwtPayload>(refreshToken, {
+        secret: this.config.jwt.refreshToken.secret,
       });
 
-      res.cookie('access_token', newAccessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        path: '/',
-        maxAge: 60 * 60 * 1000, // 1 Stunde
+      const newAccessToken = this.jwtService.sign(payload, {
+        secret: this.config.jwt.accessToken.secret,
+        expiresIn: this.config.jwt.accessToken.expiresIn,
       });
-    } catch {
+
+      res.cookie(this.config.cookies.accessToken.name, newAccessToken, {
+        ...this.config.cookies.options,
+        maxAge: this.config.cookies.accessToken.maxAge,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new UnauthorizedException(`Invalid refresh token: ${error.message}`);
+      }
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }

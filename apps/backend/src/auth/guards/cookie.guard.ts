@@ -7,12 +7,13 @@ export class CookieGuard implements CanActivate {
   constructor(private readonly jwtService: JwtService) {}
 
   canActivate(context: ExecutionContext): boolean {
-    
-    console.log('cookeguard',context)
+    console.log('cookeguard', context);
     const request = context.switchToHttp().getRequest<Request>();
     const token = request.cookies?.refresh_token;
-console.log(token)
-    if (!token) throw new UnauthorizedException('No refresh token');
+    console.log(token);
+
+    if (token === undefined || token === null || token === '')
+      throw new UnauthorizedException('No refresh token');
 
     try {
       const payload = this.jwtService.verify(token);

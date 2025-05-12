@@ -1,99 +1,214 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A robust NestJS backend application with TypeScript, PostgreSQL, and MikroORM. This backend is part of the NestJS + React + Turborepo boilerplate.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+### Core Features
+- 🚀 **NestJS**: Enterprise-grade Node.js framework
+- 🗄️ **Database**: PostgreSQL with MikroORM
+- 🔒 **Authentication**: JWT-based authentication with refresh tokens
+- 👥 **User Management**: Role-based access control
+- 📝 **API Documentation**: Swagger/OpenAPI integration
+- 🧪 **Testing**: Jest for unit and E2E testing
+- 🔄 **Migrations**: Automated database migrations
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Security Features
+- JWT authentication
+- Password hashing with bcrypt
+- Role-based access control (ADMIN, USER)
+- CORS configuration
+- Cookie-based token storage
+- Refresh token mechanism
+- Request validation with class-validator
 
-## Project setup
+### API Features
+- RESTful architecture
+- Request validation
+- Error handling
+- Response transformation
+- Rate limiting
+- Logging
 
-```bash
-$ npm install
+## Project Structure
+
+```
+src/
+├── auth/             # Authentication module
+│   ├── guards/      # Authentication guards
+│   ├── strategies/  # Passport strategies
+│   └── ...
+├── users/           # User management module
+│   ├── create/      # User creation
+│   ├── read/        # User retrieval
+│   ├── update/      # User updates
+│   ├── delete/      # User deletion
+│   └── ...
+├── migrations/      # Database migrations
+└── ...
 ```
 
-## Compile and run the project
+## Getting Started
 
+### Prerequisites
+- Node.js 24.x
+- Yarn
+- PostgreSQL
+- Docker (optional)
+
+### Installation
+
+1. Install dependencies:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+yarn install
 ```
 
-## Run tests
-
+2. Set up environment variables:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cp .env.example .env
 ```
 
-## Deployment
+3. Update the environment variables:
+```env
+# Database
+DATABASE_NAME=nest-react-turbo-template
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=admin
+DATABASE_PASSWORD=password
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+# JWT
+JWT_SECRET=your-secret-key
+JWT_REFRESH_SECRET=your-refresh-secret-key
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+# Server
+PORT=3000
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Database Setup
 
-## Resources
+#### Using Docker (Recommended)
+```bash
+yarn setup:db
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+#### Local Setup
+```bash
+yarn setup:db:local
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Development
 
-## Support
+Start the development server:
+```bash
+yarn start:dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The API will be available at `http://localhost:3000`.
 
-## Stay in touch
+### Building
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Build the application:
+```bash
+yarn build
+```
+
+Start the production server:
+```bash
+yarn start:prod
+```
+
+### Testing
+
+```bash
+# Unit tests
+yarn test
+
+# E2E tests
+yarn test:e2e
+
+# Test coverage
+yarn test:cov
+```
+
+## API Endpoints
+
+### Authentication
+- `POST /auth/login` - User login
+- `POST /auth/refresh` - Refresh access token
+- `POST /auth/logout` - User logout
+
+### Users
+- `POST /users/register` - Register new user
+- `POST /users/create-admin` - Create admin user (requires admin role)
+- `GET /users/allUser` - Get all users (requires admin role)
+- `GET /users/:id` - Get user by ID
+- `PATCH /users/:id` - Update user
+
+## Database Migrations
+
+Create a new migration:
+```bash
+yarn migration:create
+```
+
+Run migrations:
+```bash
+yarn migration:up
+```
+
+Revert migrations:
+```bash
+yarn migration:down
+```
+
+## Available Scripts
+
+- `yarn start:dev` - Start development server
+- `yarn start:prod` - Start production server
+- `yarn build` - Build application
+- `yarn test` - Run unit tests
+- `yarn test:e2e` - Run E2E tests
+- `yarn test:cov` - Run test coverage
+- `yarn lint` - Run linter
+- `yarn build:docker` - Build Docker image
+- `yarn docker:up` - Start Docker container
+- `yarn docker:down` - Stop Docker container
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| DATABASE_NAME | Database name | nest-react-turbo-template |
+| DATABASE_HOST | Database host | localhost |
+| DATABASE_PORT | Database port | 5432 |
+| DATABASE_USER | Database user | admin |
+| DATABASE_PASSWORD | Database password | password |
+| JWT_SECRET | JWT secret key | - |
+| JWT_REFRESH_SECRET | JWT refresh secret key | - |
+| PORT | Server port | 3000 |
+
+## Docker Support
+
+Build and run with Docker:
+```bash
+# Build
+yarn build:docker
+
+# Run
+yarn docker:up
+
+# Stop
+yarn docker:down
+```
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run tests
+4. Submit a pull request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License - see the main [LICENSE](../LICENSE) file for details.

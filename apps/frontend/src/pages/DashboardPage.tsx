@@ -11,7 +11,7 @@ import {
   Divider,
   Container,
 } from "@mui/material";
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,
@@ -179,7 +179,7 @@ export default function DashboardPage() {
           ))}
 
           {/* Recent Activity */}
-          <Grid size={{ xs: 12 }}>
+          <Grid size={12}>
             <Paper sx={{ p: 3 }}>
               <Typography variant="h6" sx={{ mb: 3, color: 'var(--content-900)' }}>
                 Recent Activities

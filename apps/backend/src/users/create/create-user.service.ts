@@ -11,7 +11,7 @@ export class CreateUserService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const allowedRoles: (keyof typeof Roles)[] = [Roles.USER];
-    const filteredRoles = createUserDto.roles.filter(role => allowedRoles.includes(role));
+    const filteredRoles = createUserDto.roles.filter((role) => allowedRoles.includes(role));
     if (filteredRoles.length === 0) {
       filteredRoles.push(Roles.USER);
     }
@@ -25,7 +25,6 @@ export class CreateUserService {
     return user;
   }
 
- 
   async createAdmin(createUserDto: CreateUserDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     const user = this.em.create(User, {

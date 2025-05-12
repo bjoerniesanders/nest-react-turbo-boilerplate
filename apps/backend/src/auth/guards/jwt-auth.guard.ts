@@ -5,20 +5,19 @@ import { AuthGuard } from '@nestjs/passport';
 export class JwtAuthGuard extends AuthGuard('jwt') {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const { method, route } = request;
+    const { method } = request;
 
-   
     const publicRoutes = [
       { path: '/users', method: 'POST' },
       { path: '/auth/login', method: 'POST' },
     ];
 
-    if (publicRoutes.some(route => route.path === request.path && route.method === method)) {
-      return true; 
+    if (publicRoutes.some((route) => route.path === request.path && route.method === method)) {
+      return true;
     }
 
     const result = super.canActivate(context);
-   
-    return result as boolean 
+
+    return result as boolean;
   }
 }

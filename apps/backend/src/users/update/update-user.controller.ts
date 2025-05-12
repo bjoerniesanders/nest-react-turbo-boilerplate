@@ -1,7 +1,7 @@
-import { Controller, Patch, Param, Body, UseGuards } from "@nestjs/common";
-import { UpdateUserService } from "./update-user.service";
-import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
-import { User } from "../entities/user.entity";
+import { Controller, Patch, Param, Body, UseGuards } from '@nestjs/common';
+import { UpdateUserService } from './update-user.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { User } from '../entities/user.entity';
 
 @Controller('users')
 export class UpdateUserController {
@@ -9,7 +9,7 @@ export class UpdateUserController {
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  async updateUser(@Param('id') id: number, @Body() updateData: Partial<User>) {
+  async updateUser(@Param('id') id: number, @Body() updateData: Partial<User>): Promise<User> {
     return this.updateUserService.updateUser(id, updateData);
   }
 }

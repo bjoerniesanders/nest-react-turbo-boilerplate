@@ -1,4 +1,5 @@
-import { IsOptional, IsString, IsArray, IsEmail } from 'class-validator';
+import { IsOptional, IsString, IsArray, IsEmail, IsEnum } from 'class-validator';
+import { Roles, RolesType } from '../userRoles.const';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -15,7 +16,8 @@ export class UpdateUserDto {
 
   @IsOptional()
   @IsArray()
-  roles?: string[];
+  @IsEnum(Roles, { each: true })
+  roles?: RolesType[];
 
   @IsOptional()
   @IsString()

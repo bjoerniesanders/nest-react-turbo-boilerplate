@@ -10,7 +10,7 @@ export function PrivateRoute({ children }: Readonly<PrivateRouteProps>) {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    return null; // oder einen Loading-Spinner
+    return null;
   }
 
   if (!isAuthenticated) {

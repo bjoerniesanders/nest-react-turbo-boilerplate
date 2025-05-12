@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -17,7 +17,7 @@ import {
   Email as EmailIcon,
   Lock as LockIcon,
 } from "@mui/icons-material";
-import { AuthContext } from "@/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 
 
 export default function LoginPage() {
@@ -26,10 +26,10 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const auth = use(AuthContext);
+  const auth = useAuth();
+  
   useEffect(() => {
-    if (auth?.isAuthenticated) {
-      console.log('token')
+    if (auth.isAuthenticated) {
       navigate("/dashboard");
     }
   }, [auth, navigate]);
@@ -37,9 +37,7 @@ export default function LoginPage() {
   const handleLogin = async () => {
     setError(null);
     try {
-      console.log('vr log')
-      await auth?.login(email, password);
-      console.log('hier')
+      await auth.login(email, password);
       navigate("/dashboard");
     } catch (err) {
       setError((err as Error).message);

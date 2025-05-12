@@ -55,6 +55,18 @@
     },
     "start": {
       "dependsOn": ["backend:dev", "frontend:dev"]
+    },
+    "lint": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "format": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "clean:install": {
+      "cache": false,
+      "outputs": []
     }
   }
 }

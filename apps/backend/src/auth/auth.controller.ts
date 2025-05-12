@@ -1,4 +1,13 @@
-import { Controller, HttpCode, HttpStatus, Post, Request, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Request,
+  Res,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { Request as ExpressRequest, Response as ExpressResponse } from 'express';
@@ -10,13 +19,20 @@ interface AuthenticatedRequest extends ExpressRequest {
   user: User;
 }
 
+interface AuthResponse {
+  message: string;
+}
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req: AuthenticatedRequest, @Res({ passthrough: true }) res: ExpressResponse) {
+  async login(
+    @Request() req: AuthenticatedRequest,
+    @Res({ passthrough: true }) res: ExpressResponse,
+  ): Promise<{ user: { id: number; email: string; roles: string[] } }> {
     return this.authService.login(req.user, res);
   }
 
@@ -26,22 +42,21 @@ export class AuthController {
   async refresh(
     @Cookies('refresh_token') refreshToken: string,
     @Res({ passthrough: true }) res: ExpressResponse,
-  ) {
+  ): Promise<AuthResponse> {
     if (!refreshToken) {
       throw new UnauthorizedException('Refresh token is missing');
     }
-    
+
     try {
       await this.authService.refreshTokenFromValue(refreshToken, res);
       return { message: 'Token refreshed successfully' };
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }
 
   @Post('logout')
-  logout(@Res({ passthrough: true }) res: ExpressResponse) {
-    // Lösche beide Token-Cookies
+  logout(@Res({ passthrough: true }) res: ExpressResponse): AuthResponse {
     res.clearCookie('access_token', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

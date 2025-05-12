@@ -1,17 +1,44 @@
 # NestJS + React + Turborepo Boilerplate
 
-A modern, full-stack boilerplate using NestJS for the backend and React for the frontend, managed with Turborepo.
+A modern, full-stack boilerplate using NestJS for the backend and React for the frontend, managed with Turborepo. This template provides a robust foundation for building scalable web applications with a focus on security, type safety, and developer experience.
 
 ## Features
 
+### Core Features
 - 🚀 **Monorepo Structure**: Using Turborepo for efficient monorepo management
-- 🔒 **Authentication**: JWT-based authentication system
+- 🔒 **Authentication**: JWT-based authentication with cookie storage
 - 🎨 **UI Framework**: Material-UI (MUI) with a modern, responsive design
 - 📱 **Responsive Design**: Mobile-first approach with MUI's Grid system
 - 🔄 **Type Safety**: Full TypeScript support across the entire stack
 - 🗄️ **Database**: MikroORM with PostgreSQL
-- 🧪 **Testing**: E2E and unit testing setup
+- 🧪 **Testing**: E2E and unit testing setup with Jest/Vitest
 - 📦 **Package Management**: Yarn for reliable dependency management
+
+### Backend Features
+- RESTful API architecture
+- Role-based access control (ADMIN, USER)
+- JWT authentication with refresh tokens
+- PostgreSQL database with MikroORM
+- Automated migrations
+- Cookie-based token storage
+- Comprehensive test coverage
+
+### Frontend Features
+- Modern Material-UI components
+- Protected routes with authentication
+- Responsive design
+- Type-safe API integration
+- Authentication context
+- Axios for API communication
+
+## Default Credentials
+
+For initial login, the following admin credentials are available:
+
+```
+Email: admin@example.com
+Password: securePassword123
+```
 
 ## Project Structure
 
@@ -19,18 +46,27 @@ A modern, full-stack boilerplate using NestJS for the backend and React for the 
 .
 ├── apps/
 │   ├── backend/          # NestJS backend application
+│   │   ├── src/
+│   │   │   ├── auth/     # Authentication module
+│   │   │   ├── users/    # User management
+│   │   │   └── ...
 │   └── frontend/         # React frontend application
+│       ├── src/
+│       │   ├── components/
+│       │   ├── pages/
+│       │   └── ...
 ├── packages/             # Shared packages
-└── package.json
+└── scripts/             # Development and setup scripts
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js 24.x (see .nvmrc and package.json)
 - Yarn
 - PostgreSQL
+- Docker (optional, but recommended)
 
 ### Installation
 
@@ -53,30 +89,23 @@ cp apps/frontend/.env.example apps/frontend/.env
 
 4. Update the environment variables with your configuration.
 
-5. **Database Setup**
+### Database Setup
 
-NestJS requires a running PostgreSQL database.
-
-- **Using Docker:**
-
+#### Using Docker (Recommended)
 ```bash
 yarn setup:db
 ```
-
 This will start the database container and run the database setup script.
 
-- **Locally (without Docker):**
-
+#### Local Setup
 Ensure PostgreSQL is running and accessible, then run:
-
 ```bash
 yarn setup:db:local
 ```
 
-## Building
+## Development
 
-Before starting development, build the apps:
-
+### Building
 ```bash
 # Build all
 yarn build
@@ -86,9 +115,7 @@ yarn build:backend
 yarn build:frontend
 ```
 
-### Development
-Start dev servers:
-
+### Running
 ```bash
 # Run both frontend and backend
 yarn start
@@ -98,20 +125,17 @@ yarn start:backend
 yarn start:frontend
 ```
 
-You can also run everything with Docker and auto-setup:
-
+### Docker Development
+Run everything with Docker and auto-setup:
 ```bash
 yarn start:with-setup
 ```
 
-This will restart Docker, set up the database, and start both frontend and backend in parallel.
-
 ### Testing
-
 ```bash
-yarn test          # All
-yarn test:backend  # Backend only
-yarn test:frontend # Frontend only
+yarn test          # All tests
+yarn test:backend  # Backend tests
+yarn test:frontend # Frontend tests
 ```
 
 ## Docker Commands
@@ -124,23 +148,29 @@ yarn docker:logs      # View logs
 yarn docker:restart   # Restart stack
 ```
 
-## Features in Detail
+## API Endpoints
 
-### Backend (NestJS)
+### Authentication
+- `POST /auth/login` - User login
+- `POST /auth/refresh` - Refresh access token
+- `POST /auth/logout` - User logout
 
-- RESTful API architecture
-- JWT authentication
-- MikroORM integration
-- Swagger documentation
-- E2E testing setup
+### Users
+- `POST /users/register` - Register new user
+- `POST /users/create-admin` - Create admin user (requires admin role)
+- `GET /users/allUser` - Get all users (requires admin role)
+- `GET /users/:id` - Get user by ID
+- `PATCH /users/:id` - Update user
 
-### Frontend (React)
+## Security Features
 
-- Modern Material-UI components
-- Responsive design
+- JWT-based authentication
+- Password hashing with bcrypt
+- Role-based access control
+- CORS configuration
 - Protected routes
-- Authentication context
-- Type-safe API integration
+- Cookie-based token storage
+- Refresh token mechanism
 
 ## Contributing
 

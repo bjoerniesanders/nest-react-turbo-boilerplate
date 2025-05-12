@@ -1,14 +1,18 @@
-module.exports = {
+export default {
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',
   testEnvironment: 'node',
-  testRegex: '.spec.ts$',
+  testRegex: '.*\\.spec\\.ts$',
   transform: {
-    '^.+\\.(t|j)s$': 'ts-jest',
+    '^.+\\.(t|j)s$': ['@swc/jest']
   },
+  collectCoverageFrom: ['**/*.(t|j)s'],
+  coverageDirectory: './coverage',
+  testTimeout: 30000,
+  verbose: true,
   moduleNameMapper: {
+    '^src/(.*)$': '<rootDir>/src/$1',
     '^@src/(.*)$': '<rootDir>/src/$1',
-    '^@test/(.*)$': '<rootDir>/test/$1',
   },
   globals: {
     'ts-jest': {
@@ -18,8 +22,4 @@ module.exports = {
       },
     },
   },
-  collectCoverageFrom: ['src/**/*.(t|j)s'],
-  coverageDirectory: 'coverage',
-  testTimeout: 30000,
-  verbose: true,
 }; 

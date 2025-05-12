@@ -1,12 +1,12 @@
-import { Controller, Delete, Param } from "@nestjs/common";
-import { DelteUserService } from "./delete-user.service";
+import { Controller, Delete, Param } from '@nestjs/common';
+import { DelteUserService } from './delete-user.service';
 
 @Controller('users')
 export class DeleteUserController {
   constructor(private readonly deleteUserService: DelteUserService) {}
 
   @Delete(':id')
-  async deleteUser(@Param('id') id: number) {
+  async deleteUser(@Param('id') id: number): Promise<{ message: string }> {
     await this.deleteUserService.deleteUser(id);
     return { message: `User with id ${id} has been deleted` };
   }

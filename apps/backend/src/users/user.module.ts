@@ -8,20 +8,14 @@ import { UpdateUserService } from './update/update-user.service';
 import { DeleteUserController } from './delete/delete-user.controller';
 import { DelteUserService } from './delete/delete-user.service';
 
-
 @Module({
   controllers: [
     CreateUserController,
     ReadUserController,
     UpdateUserController,
-    DeleteUserController
+    DeleteUserController,
   ],
-  providers: [
-    CreateUserService,
-    ReadUserService,
-    UpdateUserService,
-    DelteUserService
-  ],
+  providers: [CreateUserService, ReadUserService, UpdateUserService, DelteUserService],
   exports: [ReadUserService],
 })
 export class UsersModule {}

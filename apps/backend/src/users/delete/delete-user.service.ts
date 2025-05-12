@@ -1,6 +1,6 @@
-import { EntityManager } from "@mikro-orm/core";
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { User } from "../entities/user.entity";
+import { EntityManager } from '@mikro-orm/core';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { User } from '../entities/user.entity';
 
 @Injectable()
 export class DelteUserService {

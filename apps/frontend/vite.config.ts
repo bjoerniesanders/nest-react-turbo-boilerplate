@@ -6,7 +6,8 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   define: {
-    'process.env': process.env,
+    'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || 'http://localhost:3000'),
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   },
   resolve: {
     alias: {

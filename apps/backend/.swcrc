@@ -1,5 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/swcrc",
+  "$schema": "https://swc.rs/schema.json",
+  "sourceMaps": true,
   "jsc": {
     "parser": {
       "syntax": "typescript",
@@ -14,11 +15,11 @@
       "@src/*": ["./src/*"],
       "@test/*": ["./test/*"]
     },
-    "baseUrl": ".",
     "transform": {
       "legacyDecorator": true,
       "decoratorMetadata": true
-    }
+    },
+    "baseUrl": "./"
   },
   "module": {
     "type": "commonjs"

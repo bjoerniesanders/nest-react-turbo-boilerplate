@@ -8,7 +8,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @Controller('users')
 export class ReadUserController {
   constructor(private readonly readUserService: ReadUserService) {}
-  
+
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   @Get('allUser')
@@ -18,7 +18,7 @@ export class ReadUserController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async getUserById(@Param('id') id: number) {
+  async getUserById(@Param('id') id: number): Promise<UserDto> {
     return this.readUserService.findById(id);
   }
 }

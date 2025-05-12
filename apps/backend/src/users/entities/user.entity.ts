@@ -12,15 +12,15 @@ export class User {
   @Property({ hidden: true })
   password!: string;
 
-  @Property({ unique: true,  nullable: true })
+  @Property({ unique: true, nullable: true })
   email!: string;
 
   @Property({ type: 'json' })
   roles: RolesType[] = [Roles.USER];
 
-  @Property ({ nullable: true})
+  @Property({ nullable: true })
   surname?: string;
 
-  @Property({ nullable: true})
+  @Property({ nullable: true })
   lastname?: string;
 }

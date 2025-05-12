@@ -1,23 +1,27 @@
+import '@testing-library/jest-dom';
 import { render, screen, act, waitFor } from '@testing-library/react';
 import { AuthProvider, useAuth } from './AuthContext';
 import { AuthService } from '@/services/Authservice';
 import { BrowserRouter } from 'react-router-dom';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, type MockedFunction } from 'vitest';
+import { useEffect } from 'react';
 
-const mockGet = vi.fn();
-const mockSet = vi.fn();
-const mockRemove = vi.fn();
+vi.mock('react-cookie', () => {
+  const mockGet = vi.fn();
+  
+  return {
+    Cookies: class {
+      get = mockGet;
+      set = vi.fn();
+      remove = vi.fn();
+    },
+    __mocks: { mockGet }
+  };
+});
 
-// Mock react-cookie
-vi.mock('react-cookie', () => ({
-  Cookies: class {
-    get = mockGet;
-    set = mockSet;
-    remove = mockRemove;
-  },
-}));
+type ReactCookieMock = { __mocks: { mockGet: ReturnType<typeof vi.fn> } };
+const { mockGet } = (vi.mocked(await import('react-cookie')) as unknown as ReactCookieMock).__mocks;
 
-// Mock AuthService
 vi.mock('@/services/Authservice', () => ({
   AuthService: {
     login: vi.fn(),
@@ -26,7 +30,6 @@ vi.mock('@/services/Authservice', () => ({
   },
 }));
 
-// Mock axiosInstance
 vi.mock('@/api/axiosInstance', () => ({
   default: {
     interceptors: {
@@ -40,8 +43,8 @@ const TestComponent = () => {
   const { isAuthenticated, isLoading, login, logout } = useAuth();
   return (
     <div>
-      <div data-testid="auth-status">{isAuthenticated ? 'Authentifiziert' : 'Nicht authentifiziert'}</div>
-      <div data-testid="loading-status">{isLoading ? 'Lädt...' : 'Nicht lädt'}</div>
+      <div data-testid="auth-status">{isAuthenticated ? 'Authenticated' : 'Not authenticated'}</div>
+      <div data-testid="loading-status">{isLoading ? 'Loading...' : 'Not loading'}</div>
       <button onClick={() => login('test@example.com', 'password')}>Login</button>
       <button onClick={logout}>Logout</button>
     </div>
@@ -54,7 +57,7 @@ describe('AuthContext', () => {
     mockGet.mockReturnValue(null);
   });
 
-  it('sollte initial nicht authentifiziert sein', () => {
+  it('should initially not be authenticated', () => {
     render(
       <BrowserRouter>
         <AuthProvider>
@@ -63,18 +66,19 @@ describe('AuthContext', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByTestId('auth-status')).toHaveTextContent('Nicht authentifiziert');
+    expect(screen.getByTestId('auth-status')).toHaveTextContent('Not authenticated');
   });
 
-  it('sollte erfolgreich einloggen', async () => {
+  it('should login successfully', async () => {
     const mockResponse = {
+      access_token: 'mock-access-token',
       user: {
         id: 1,
         email: 'test@example.com',
         roles: ['user'],
       },
     };
-    (AuthService.login as any).mockResolvedValueOnce(mockResponse);
+    (AuthService.login as MockedFunction<typeof AuthService.login>).mockResolvedValueOnce(mockResponse);
 
     render(
       <BrowserRouter>
@@ -89,35 +93,57 @@ describe('AuthContext', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authentifiziert');
+      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authenticated');
     });
 
     expect(AuthService.login).toHaveBeenCalledWith('test@example.com', 'password');
   });
 
-  it('sollte Fehler beim Login behandeln', async () => {
-    const error = new Error('Login fehlgeschlagen');
-    (AuthService.login as any).mockRejectedValueOnce(error);
+  it('should handle login errors', async () => {
+    const error = new Error('Login failed');
+    (AuthService.login as MockedFunction<typeof AuthService.login>).mockRejectedValueOnce(error);
+
+    const LoginErrorTestComponent = () => {
+      const { isAuthenticated, login } = useAuth();
+      
+      useEffect(() => {
+        const tryLogin = async () => {
+          try {
+            await login('test@example.com', 'password');
+          } catch {
+            /* Error ignored - only testing side effects */
+          }
+        };
+        
+        tryLogin();
+      }, [login]);
+      
+      return (
+        <div>
+          <div data-testid="auth-status">
+            {isAuthenticated ? 'Authenticated' : 'Not authenticated'}
+          </div>
+        </div>
+      );
+    };
 
     render(
       <BrowserRouter>
         <AuthProvider>
-          <TestComponent />
+          <LoginErrorTestComponent />
         </AuthProvider>
       </BrowserRouter>
     );
-
-    await act(async () => {
-      screen.getByText('Login').click();
-    });
 
     await waitFor(() => {
-      expect(screen.getByTestId('auth-status')).toHaveTextContent('Nicht authentifiziert');
+      expect(AuthService.login).toHaveBeenCalledWith('test@example.com', 'password');
     });
+
+    expect(screen.getByTestId('auth-status')).toHaveTextContent('Not authenticated');
   });
 
-  it('sollte erfolgreich ausloggen', async () => {
-    (AuthService.logout as any).mockResolvedValueOnce(undefined);
+  it('should logout successfully', async () => {
+    (AuthService.logout as MockedFunction<typeof AuthService.logout>).mockResolvedValueOnce(undefined);
 
     render(
       <BrowserRouter>
@@ -127,40 +153,38 @@ describe('AuthContext', () => {
       </BrowserRouter>
     );
 
-    // Erst einloggen
     const mockResponse = {
+      access_token: 'mock-access-token',
       user: {
         id: 1,
         email: 'test@example.com',
         roles: ['user'],
       },
     };
-    (AuthService.login as any).mockResolvedValueOnce(mockResponse);
+    (AuthService.login as MockedFunction<typeof AuthService.login>).mockResolvedValueOnce(mockResponse);
 
     await act(async () => {
       screen.getByText('Login').click();
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authentifiziert');
+      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authenticated');
     });
 
-    // Dann ausloggen
     await act(async () => {
       screen.getByText('Logout').click();
     });
 
     await waitFor(() => {
-      expect(screen.getByTestId('auth-status')).toHaveTextContent('Nicht authentifiziert');
+      expect(screen.getByTestId('auth-status')).toHaveTextContent('Not authenticated');
     });
 
     expect(AuthService.logout).toHaveBeenCalled();
   });
 
-  it('sollte automatisch Token erneuern wenn vorhanden', async () => {
-    // Mock Cookie mit Token
+  it('should automatically refresh token if present', async () => {
     mockGet.mockReturnValue('mock-refresh-token');
-    (AuthService.refresh as any).mockResolvedValueOnce(undefined);
+    (AuthService.refresh as MockedFunction<typeof AuthService.refresh>).mockResolvedValueOnce(undefined);
 
     render(
       <BrowserRouter>
@@ -172,7 +196,7 @@ describe('AuthContext', () => {
 
     await waitFor(() => {
       expect(AuthService.refresh).toHaveBeenCalled();
-      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authentifiziert');
+      expect(screen.getByTestId('auth-status')).toHaveTextContent('Authenticated');
     });
   });
 }); 

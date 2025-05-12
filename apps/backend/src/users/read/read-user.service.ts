@@ -9,7 +9,7 @@ export class ReadUserService {
 
   async findAll(): Promise<UserDto[]> {
     const users = await this.em.find(User, {});
-    return users.map(user => ({
+    return users.map((user) => ({
       id: user.id,
       username: user.username,
       email: user.email,
@@ -20,7 +20,7 @@ export class ReadUserService {
   async findByEmail(email: string): Promise<User | null> {
     return await this.em.findOne(User, { email });
   }
-  
+
   async findById(id: number): Promise<UserDto> {
     const user = await this.em.findOne(User, { id });
     if (!user) {
