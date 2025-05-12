@@ -1998,15 +1998,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mikro-orm/reflection@npm:^6.4.11":
-  version: 6.4.14
-  resolution: "@mikro-orm/reflection@npm:6.4.14"
+"@mikro-orm/reflection@npm:^6.4.15":
+  version: 6.4.15
+  resolution: "@mikro-orm/reflection@npm:6.4.15"
   dependencies:
     globby: "npm:11.1.0"
     ts-morph: "npm:25.0.1"
   peerDependencies:
     "@mikro-orm/core": ^6.0.0
-  checksum: 10c0/d4c8a50c9c32efaac98e00772da4c200584581fbe17d55dbedcba6104a5db0b831650077fc1f52a2bce8dde6158649e1d5d9c26ba2d7466c7dcae163d8621ee8
+  checksum: 10c0/aa4d8164fa4e6c74cad817f70aea3b43e083c1510a98dca01c8a985d4e60be518ab6b0414a1ca594375dc6813efdbef5dc70487a71da8b369b132d5afd0f2699
   languageName: node
   linkType: hard
 
@@ -5250,7 +5250,7 @@ __metadata:
     "@mikro-orm/migrations": "npm:^6.4.11"
     "@mikro-orm/nestjs": "npm:^6.1.1"
     "@mikro-orm/postgresql": "npm:^6.4.11"
-    "@mikro-orm/reflection": "npm:^6.4.11"
+    "@mikro-orm/reflection": "npm:^6.4.15"
     "@nestjs/cli": "npm:^11.0.7"
     "@nestjs/common": "npm:^11.1.0"
     "@nestjs/config": "npm:^4.0.2"
