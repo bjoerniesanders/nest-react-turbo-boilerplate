@@ -9,6 +9,22 @@ on:
 jobs:
   install-and-test:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: nest-react-turbo-template
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -16,7 +32,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
           cache: 'yarn'
 
       - name: Install dependencies
@@ -28,5 +44,20 @@ jobs:
       - name: Lint
         run: yarn lint || echo "Lint errors detected"
 
+      - name: Run database migrations
+        run: yarn migrate
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: admin
+          DATABASE_PASSWORD: password
+          DATABASE_NAME: nest-react-turbo-template
+
       - name: Run tests
         run: yarn test
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: admin
+          DATABASE_PASSWORD: password
+          DATABASE_NAME: nest-react-turbo-template

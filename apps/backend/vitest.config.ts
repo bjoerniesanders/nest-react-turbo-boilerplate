@@ -6,8 +6,8 @@ export default defineConfig({
     environment: 'node',
     include: ['**/*.spec.ts'],
     coverage: {
-      provider: 'c8',
+      provider: 'v8',
       reporter: ['text', 'json', 'html'],
     },
   },
-}); 
+});

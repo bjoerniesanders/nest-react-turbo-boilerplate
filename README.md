@@ -103,6 +103,71 @@ Ensure PostgreSQL is running and accessible, then run:
 yarn setup:db:local
 ```
 
+### Running Database Migrations
+
+After setting up the database, you need to run the migrations to create the necessary tables:
+
+```bash
+yarn migrate
+# or alternatively
+cd apps/backend
+npm run migration:up
+cd ../..
+```
+
+## Detailed Step-by-Step Setup Guide
+
+If you're encountering issues or prefer a more detailed setup process, follow these steps:
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/nest-react-turbo-boilerplate.git
+cd nest-react-turbo-boilerplate
+```
+
+2. **Install all dependencies**
+```bash
+# Root level dependencies
+yarn install
+
+# This is automatically handled by the workspace setup, but if you encounter issues:
+cd apps/frontend && yarn install
+cd ../backend && yarn install
+cd ../..
+```
+
+3. **Configure environment variables**
+```bash
+# Copy example environment files
+cp apps/backend/.env.example apps/backend/.env
+cp apps/frontend/.env.example apps/frontend/.env
+
+# Edit the environment files with your preferred editor
+# Make sure to set DATABASE_URL, JWT_SECRET, etc.
+```
+
+4. **Database Setup and Migrations**
+```bash
+# Start the database (if using Docker)
+yarn setup:db
+
+# Or for local PostgreSQL
+yarn setup:db:local
+
+# Run migrations
+yarn migrate
+```
+
+5. **Build the applications**
+```bash
+yarn build
+```
+
+6. **Start development servers**
+```bash
+yarn start
+```
+
 ## Development
 
 ### Building
@@ -117,18 +182,22 @@ yarn build:frontend
 
 ### Running
 ```bash
-# Run both frontend and backend
+# Run both frontend and backend in development mode
 yarn start
 
 # Or individually
 yarn start:backend
 yarn start:frontend
+
+# For local development with local PostgreSQL (recommended)
+yarn start:local
 ```
 
 ### Docker Development
-Run everything with Docker and auto-setup:
+⚠️ **Note**: `yarn start:with-setup` starts both Docker containers (production build) and development servers, which may cause port conflicts. For pure development, use `yarn start` instead.
+
 ```bash
-yarn start:with-setup
+yarn start:with-setup  # Full Docker setup (may have frontend port conflicts)
 ```
 
 ### Testing
