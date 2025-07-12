@@ -3749,14 +3749,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/passport-oauth2@npm:^1":
-  version: 1.4.17
-  resolution: "@types/passport-oauth2@npm:1.4.17"
+"@types/passport-oauth2@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@types/passport-oauth2@npm:1.8.0"
   dependencies:
     "@types/express": "npm:*"
     "@types/oauth": "npm:*"
     "@types/passport": "npm:*"
-  checksum: 10c0/f00c671f93c66c07f871f12257280a1eaf9f95f119694018d03005c3dd35ac44aff2854c65b6cd5d3ea9e19658a27dcf5e9ad43d0742a1237a7876658a94584e
+  checksum: 10c0/1635679ed70044858570488fb46a14868099286f4fe785d47874c1a02706cf5b5cee07e5be0e75a5103a5c260ea9e903e0243d8b7992281680233e69f60e72fa
   languageName: node
   linkType: hard
 
@@ -5167,7 +5167,7 @@ __metadata:
     "@types/passport": "npm:^1.0.17 "
     "@types/passport-jwt": "npm:^4.0.1"
     "@types/passport-local": "npm:^1.0.38"
-    "@types/passport-oauth2": "npm:^1"
+    "@types/passport-oauth2": "npm:^1.8.0"
     "@types/pg": "npm:^8"
     "@types/supertest": "npm:^6.0.2"
     "@typescript-eslint/eslint-plugin": "npm:^8.32.0"
@@ -7308,11 +7308,11 @@ __metadata:
   linkType: hard
 
 "figlet@npm:^1.5.2":
-  version: 1.8.1
-  resolution: "figlet@npm:1.8.1"
+  version: 1.8.2
+  resolution: "figlet@npm:1.8.2"
   bin:
     figlet: bin/index.js
-  checksum: 10c0/20a9023ee316b2cbbeb9ba94c9adfdb9fc1bd150efec0ddd3492c23a03e3311ac77fb1a65cfa14e3bf4eca250ddcf98ca380871222cb9909bd50071b3602e8da
+  checksum: 10c0/f2fdd47974e63d061866c716f669c0ca3bfaa9d120102db8197752ed7878c4cc065db3708076dc273e40dcf9bc4ec986636b4aeceb6682a6a33791ea2846423a
   languageName: node
   linkType: hard
 
