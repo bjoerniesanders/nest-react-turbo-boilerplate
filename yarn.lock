@@ -5062,7 +5062,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.32.0"
     bcrypt: "npm:^6.0.0"
     class-transformer: "npm:^0.5.1"
-    class-validator: "npm:^0.14.1"
+    class-validator: "npm:^0.14.2"
     cookie-parser: "npm:^1.4.7"
     dotenv: "npm:^16.4.7"
     eslint: "npm:^9.26.0"
@@ -5505,7 +5505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-validator@npm:^0.14.1":
+"class-validator@npm:^0.14.2":
   version: 0.14.2
   resolution: "class-validator@npm:0.14.2"
   dependencies:
