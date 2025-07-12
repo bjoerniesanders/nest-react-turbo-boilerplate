@@ -3878,7 +3878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/supertest@npm:^6.0.2":
+"@types/supertest@npm:^6.0.3":
   version: 6.0.3
   resolution: "@types/supertest@npm:6.0.3"
   dependencies:
@@ -5057,7 +5057,7 @@ __metadata:
     "@types/passport-local": "npm:^1.0.38"
     "@types/passport-oauth2": "npm:^1"
     "@types/pg": "npm:^8"
-    "@types/supertest": "npm:^6.0.2"
+    "@types/supertest": "npm:^6.0.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.32.0"
     "@typescript-eslint/parser": "npm:^8.32.0"
     bcrypt: "npm:^6.0.0"
