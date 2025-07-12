@@ -81,7 +81,7 @@
     "@swc/register": "^0.1.10",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.9",
-    "@types/express": "^5.0.1",
+    "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.17",
     "@types/passport": "^1.0.17 ",
