@@ -3483,12 +3483,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookie-parser@npm:^1.4.8":
-  version: 1.4.8
-  resolution: "@types/cookie-parser@npm:1.4.8"
+"@types/cookie-parser@npm:^1.4.9":
+  version: 1.4.9
+  resolution: "@types/cookie-parser@npm:1.4.9"
   peerDependencies:
     "@types/express": "*"
-  checksum: 10c0/c9a39da983203624a56ba16f9a7cb4b9d5fe113d863f05b60be15b2743699e8d3cea34c634a21a15c03054feb10a49f981a699d979357bff549d09e246561966
+  checksum: 10c0/ff7eee7b028ee3943ea92a1771d5587daf54ef038a6a24c034018956a6d0e045a16817b612c0bd53da4162c8037e1c1b8142f9f4bfe6708e20982993704fdb18
   languageName: node
   linkType: hard
 
@@ -5160,7 +5160,7 @@ __metadata:
     "@swc/register": "npm:^0.1.10"
     "@testing-library/dom": "npm:^10.4.0"
     "@types/bcrypt": "npm:^5.0.2"
-    "@types/cookie-parser": "npm:^1.4.8"
+    "@types/cookie-parser": "npm:^1.4.9"
     "@types/express": "npm:^5.0.1"
     "@types/jest": "npm:^29.5.14"
     "@types/node": "npm:^22.15.17"
@@ -7308,11 +7308,11 @@ __metadata:
   linkType: hard
 
 "figlet@npm:^1.5.2":
-  version: 1.8.1
-  resolution: "figlet@npm:1.8.1"
+  version: 1.8.2
+  resolution: "figlet@npm:1.8.2"
   bin:
     figlet: bin/index.js
-  checksum: 10c0/20a9023ee316b2cbbeb9ba94c9adfdb9fc1bd150efec0ddd3492c23a03e3311ac77fb1a65cfa14e3bf4eca250ddcf98ca380871222cb9909bd50071b3602e8da
+  checksum: 10c0/f2fdd47974e63d061866c716f669c0ca3bfaa9d120102db8197752ed7878c4cc065db3708076dc273e40dcf9bc4ec986636b4aeceb6682a6a33791ea2846423a
   languageName: node
   linkType: hard
 
