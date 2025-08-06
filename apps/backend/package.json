@@ -109,7 +109,7 @@
     "typeorm": "^0.3.25",
     "typescript": "^5.8.3",
     "unplugin-swc": "^1.5.5",
-    "vite": "^7.0.4"
+    "vite": "^7.0.6"
   },
   "mikro-orm": {
     "useTsNode": true,
