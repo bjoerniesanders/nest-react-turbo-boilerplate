@@ -55,7 +55,7 @@
     "@mikro-orm/postgresql": "^6.4.16",
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
-    "@nestjs/common": "^11.1.5",
+    "@nestjs/common": "^11.2.3",
     "@nestjs/core": "^11.1.5",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
