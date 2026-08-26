@@ -47,7 +47,7 @@
     "@swc/jest": "^0.2.39",
     "turbo": "^2.5.4",
     "unplugin-swc": "1.5.5",
-    "vitest": "3.2.4"
+    "vitest": "3.2.6"
   },
   "dependencies": {
     "@mikro-orm/core": "^6.4.16",
