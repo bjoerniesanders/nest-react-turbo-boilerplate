@@ -43,7 +43,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@swc/core": "1.12.11",
+    "@swc/core": "1.16.1",
     "@swc/jest": "^0.2.39",
     "turbo": "^2.5.4",
     "unplugin-swc": "1.5.5",
